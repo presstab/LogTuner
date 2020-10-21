@@ -9,6 +9,8 @@ enum LogOutput
 {
     AfCorrection1,
     AfLearning1,
+    AfLearning3,
+    AfCorrection3,
     AfSens1,
     Boost,
     CalculatedLoad,

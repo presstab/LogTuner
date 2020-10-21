@@ -20,6 +20,7 @@ QVariant Log::ParseStringData(LogOutput output, const QString &qstrData)
             break;
         }
         case LogOutput::AfCorrection1:
+        case LogOutput::AfCorrection3:
         case LogOutput::AfLearning1:
         case LogOutput::Boost:
         case LogOutput::DynamicAdvance:
@@ -53,6 +54,9 @@ void Log::AddRow(const QStringList &listRow)
 {
     LogRow row;
     for (int i = 0; i < listRow.size(); i++) {
+        if (!m_mapColumnOutput.count(i))
+            continue; //Column not found
+
         LogOutput output = m_mapColumnOutput.at(i);
         QString qstrData = listRow.at(i);
         QVariant data = ParseStringData(output, qstrData);

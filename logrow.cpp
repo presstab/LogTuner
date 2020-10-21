@@ -31,6 +31,13 @@ int32_t LogRow::AfCorrection1() const
     return 0;
 }
 
+int32_t LogRow::AfCorrection3() const
+{
+    if (m_mapData.count(LogOutput::AfCorrection3))
+        return m_mapData.at(LogOutput::AfCorrection3).toInt();
+    return 0;
+}
+
 int32_t LogRow::AfLearning1() const
 {
     if (m_mapData.count(LogOutput::AfLearning1))
@@ -38,9 +45,21 @@ int32_t LogRow::AfLearning1() const
     return 0;
 }
 
+int32_t LogRow::AfLearning3() const
+{
+    if (m_mapData.count(LogOutput::AfLearning3))
+        return m_mapData.at(LogOutput::AfLearning3).toInt();
+    return 0;
+}
+
 int32_t LogRow::TotalAf1Correction() const
 {
     return AfCorrection1() + AfLearning1();
+}
+
+int32_t LogRow::TotalAf3Correction() const
+{
+    return AfCorrection3() + AfLearning3();
 }
 
 uint32_t LogRow::MafVolts() const

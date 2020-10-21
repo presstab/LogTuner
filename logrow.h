@@ -16,8 +16,11 @@ public:
     bool IsOpenLoop() const;
     bool IsClosedLoop() const;
     int32_t AfCorrection1() const;
+    int32_t AfCorrection3() const;
     int32_t AfLearning1() const;
+    int32_t AfLearning3() const;
     int32_t TotalAf1Correction() const;
+    int32_t TotalAf3Correction() const;
     uint32_t MafVolts() const;
 };
 

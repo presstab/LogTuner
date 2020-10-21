@@ -22,7 +22,8 @@ SOURCES += \
     mafdialog.cpp \
     main.cpp \
     mainwindow.cpp \
-    model.cpp
+    model.cpp \
+    utilstring.cpp
 
 HEADERS += \
     log.h \
@@ -30,7 +31,8 @@ HEADERS += \
     logrow.h \
     mafdialog.h \
     mainwindow.h \
-    model.h
+    model.h \
+    utilstring.h
 
 FORMS += \
     mafdialog.ui \

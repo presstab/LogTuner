@@ -3,7 +3,9 @@
 std::map<QString, LogOutput> mapOutputNames
 {
     {"AF Correction 1 (%)", LogOutput::AfCorrection1},
+    {"AF Correction 3 (%)", LogOutput::AfCorrection3},
     {"AF Learning 1 (%)", LogOutput::AfLearning1},
+    {"AF Learning 3 (%)", LogOutput::AfLearning3},
     {"AF Sens 1 Ratio (AFR)", LogOutput::AfSens1},
     {"Boost (psi)", LogOutput::Boost},
     {"Calculated Load (g/rev)", LogOutput::CalculatedLoad},

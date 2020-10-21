@@ -8,6 +8,8 @@
 #include <QFile>
 #include <QFileDialog>
 
+#include <iostream>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -26,7 +28,8 @@ MainWindow::~MainWindow()
 void MainWindow::on_buttonMafScalling_clicked()
 {
     MafDialog* dialog = new MafDialog(this);
-    connect(dialog, &MafDialog::MafScaleChanged, this, &MainWindow::MafScaleChanged);
+    //connect(dialog, &MafDialog::MafScaleChanged, this, &MainWindow::MafScaleChanged);
+    dialog->SetModel(m_model);
     dialog->show();
 }
 
@@ -64,7 +67,7 @@ void MainWindow::on_buttonLoadLog_clicked()
             LogOutput output = mapOutputNames.at(qstrName);
             mapOutputColumn.emplace(output, col);
         } else {
-            mapOutputColumn.find(LogOutput::RPM);
+            std::cout << "Could not find log category: " << qstrName.toStdString() << std::endl;
         }
     }
 

@@ -35,6 +35,16 @@
     </widget>
    </item>
    <item>
+    <widget class="QLabel" name="labelCorrectedScale">
+     <property name="text">
+      <string>Corrected MAF Scale</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTableWidget" name="tableCorrectedScale"/>
+   </item>
+   <item>
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
