@@ -52,6 +52,11 @@ int32_t LogRow::AfLearning3() const
     return 0;
 }
 
+/**
+ * @brief LogRow::TotalAf1Correction
+ * @return TotalCorrection * 100. If datalog shows 1.04 then TotalCorrection() will return 104.
+ * Note that 104 would indicate 1.04% correction.
+ */
 int32_t LogRow::TotalAf1Correction() const
 {
     return AfCorrection1() + AfLearning1();
@@ -62,6 +67,10 @@ int32_t LogRow::TotalAf3Correction() const
     return AfCorrection3() + AfLearning3();
 }
 
+/**
+ * @brief LogRow::MafVolts
+ * @return MafVolts * 100. If datalog shows 1.04 then MafVolts() will return 104.
+ */
 uint32_t LogRow::MafVolts() const
 {
     if (m_mapData.count(LogOutput::MafVolts))

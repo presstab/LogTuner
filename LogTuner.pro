@@ -16,6 +16,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    injectordialog.cpp \
+    injectortuner.cpp \
     log.cpp \
     logoutput.cpp \
     logrow.cpp \
@@ -26,6 +28,8 @@ SOURCES += \
     utilstring.cpp
 
 HEADERS += \
+    injectordialog.h \
+    injectortuner.h \
     log.h \
     logoutput.h \
     logrow.h \
@@ -35,6 +39,7 @@ HEADERS += \
     utilstring.h
 
 FORMS += \
+    injectordialog.ui \
     mafdialog.ui \
     mainwindow.ui
 

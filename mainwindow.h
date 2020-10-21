@@ -23,6 +23,8 @@ private slots:
 
     void on_buttonLoadLog_clicked();
 
+    void on_buttonInjector_clicked();
+
 private:
     Ui::MainWindow *ui;
     Model* m_model;

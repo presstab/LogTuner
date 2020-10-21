@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include "log.h"
+#include "injectordialog.h"
 #include "mafdialog.h"
 #include "model.h"
 
@@ -84,4 +85,10 @@ void MainWindow::on_buttonLoadLog_clicked()
 
     //Set the new log in the model
     m_model->SetLog(log);
+}
+
+void MainWindow::on_buttonInjector_clicked()
+{
+    InjectorDialog* dialog = new InjectorDialog(this);
+    dialog->show();
 }
