@@ -12,6 +12,69 @@ InjectorTuner::InjectorTuner(Model *model)
     m_model = model;
 }
 
+/**
+ * @brief InjectorTuner::CalculateSmallIpw
+ * @return [{pulsewidth => {record count, avg correction}}]
+ */
+std::vector<std::pair<int32_t, std::pair<int, double>>> InjectorTuner::CalculateSmallIpw()
+{
+    std::map<int32_t, std::vector<int32_t>> mapPulseWidthCorrections; // PulseWidth => Corrections
+    const Log& log = m_model->GetLog();
+    LogRow logrowLast;
+    double dVoltsPrevChange = 0;
+    for (unsigned int row = 0; row < log.RowCount(); row++) {
+        const LogRow& logrow = log.Row(row);
+        if (row == 0 || logrow.IsOpenLoop()) {
+            logrowLast = logrow;
+            continue;
+        }
+
+        //Filter out differences that are larger than 0.2 volts/second, or if two records ago is a big change
+        int32_t nTimeDifference = logrow.Time() - logrowLast.Time();
+        int32_t nVoltDifference = logrow.MafVolts() - logrowLast.MafVolts();
+        double dVoltsSecChange = double(nVoltDifference)/double(nTimeDifference);
+        if (dVoltsSecChange >= 0.2 || dVoltsPrevChange >= 0.2) {
+            dVoltsPrevChange = dVoltsSecChange;
+            logrowLast = logrow;
+            continue;
+        }
+        dVoltsPrevChange = dVoltsSecChange;
+
+        int32_t nPulseWidthKey = logrow.InjectorBasePulseWidth() / 10;
+        int32_t nRemainder = nPulseWidthKey % 5;
+        if (nRemainder >= 3)
+            nPulseWidthKey += 5-nRemainder;
+        else if (nRemainder > 0)
+            nPulseWidthKey -= nRemainder;
+
+        if (!mapPulseWidthCorrections.count(nPulseWidthKey))
+            mapPulseWidthCorrections.emplace(nPulseWidthKey, std::vector<int32_t>());
+
+        int32_t nTotalError = logrow.TotalAf1Correction();
+        mapPulseWidthCorrections.at(nPulseWidthKey).emplace_back(nTotalError);
+        logrowLast = logrow;
+    }
+
+    //Calculate average correction for each pulse width
+    std::vector<std::pair<int32_t, std::pair<int, double>>> vPulseWidthCorrections;
+    QString strOut;
+    for (const auto& pair : mapPulseWidthCorrections) {
+        const std::vector<int32_t>& vIpwCorrections = pair.second;
+        //If there are not at least 30 data points then skip this correction range
+        if (vIpwCorrections.size() < 30)
+            continue;
+
+        double dTotalCorrection = 0;
+        for (const int32_t& nCorrection : vIpwCorrections)
+            dTotalCorrection += nCorrection;
+        dTotalCorrection /= vIpwCorrections.size();
+        dTotalCorrection /= 100;
+        vPulseWidthCorrections.emplace_back(pair.first, std::make_pair(vIpwCorrections.size(), dTotalCorrection));
+    }
+
+    return vPulseWidthCorrections;
+}
+
 void InjectorTuner::CalculateTune(bool fOpenLoop)
 {
     std::map<int32_t, std::vector<int32_t>> mapMafCorrections; // MafVoltage => Corrections

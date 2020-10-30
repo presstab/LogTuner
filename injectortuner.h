@@ -3,6 +3,9 @@
 
 class Model;
 
+#include <cstdint>
+#include <vector>
+
 class InjectorTuner
 {
 private:
@@ -10,6 +13,7 @@ private:
 
 public:
     InjectorTuner(Model* model);
+    std::vector<std::pair<int32_t, std::pair<int, double>>> CalculateSmallIpw();
     void CalculateTune(bool fOpenLoop);
 };
 

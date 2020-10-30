@@ -21,6 +21,8 @@ public:
 private slots:
     void on_buttonCalculate_clicked();
 
+    void on_buttonSmallIpw_clicked();
+
 private:
     Ui::InjectorDialog *ui;
     Model* m_model;

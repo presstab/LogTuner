@@ -85,3 +85,29 @@ void InjectorDialog::on_buttonCalculate_clicked()
     InjectorTuner tuner(m_model);
     tuner.CalculateTune(/*fOpenLoop*/false);
 }
+
+void InjectorDialog::on_buttonSmallIpw_clicked()
+{
+    InjectorTuner tuner(m_model);
+    std::vector<std::pair<int32_t, std::pair<int, double>>> vCorrections = tuner.CalculateSmallIpw();
+
+    ui->tablewidgetSmallIPW->setRowCount(3);
+
+    int column = 0;
+    for (const std::pair<int32_t, std::pair<int, double>>& record : vCorrections) {
+        const int32_t& nPulseWidth = record.first;
+        const int& nRecordCount = record.second.first;
+        const double& dAvgCorrection = record.second.second;
+
+        ui->tablewidgetSmallIPW->insertColumn(column);
+
+        QTableWidgetItem* itemPulseWidth = new QTableWidgetItem(QString::number(nPulseWidth));
+        ui->tablewidgetSmallIPW->setItem(0, column, itemPulseWidth);
+        QTableWidgetItem* itemCorrection = new QTableWidgetItem(QString::number(dAvgCorrection));
+        ui->tablewidgetSmallIPW->setItem(1, column, itemCorrection);
+        QTableWidgetItem* itemCount = new QTableWidgetItem(QString::number(nRecordCount));
+        ui->tablewidgetSmallIPW->setItem(2, column, itemCount);
+
+        column++;
+    }
+}

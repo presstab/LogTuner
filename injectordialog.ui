@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>300</height>
+    <height>315</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -59,6 +59,13 @@
       <widget class="QPushButton" name="buttonCalculate">
        <property name="text">
         <string>Calculate Changes</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="buttonSmallIpw">
+       <property name="text">
+        <string>Calculate Small IPW Changes</string>
        </property>
       </widget>
      </item>
