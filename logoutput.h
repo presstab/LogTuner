@@ -15,10 +15,12 @@ enum LogOutput
     Boost,
     CalculatedLoad,
     ClosedLoopSwitch,
+    CommandedFuel,
     DynamicAdvance,
     FeedbackKnock,
     FineKnockLearning,
     IgnitionTiming,
+    InjectorBasePulseWidth,
     InjectorDutyCycle,
     InjectorLatency,
     MafGs,
@@ -26,7 +28,8 @@ enum LogOutput
     RPM,
     ThrottlePos,
     Time,
-    VehicleSpeed
+    VehicleSpeed,
+    WideBand
 };
 
 extern std::map<QString, LogOutput> mapOutputNames;

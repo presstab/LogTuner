@@ -10,7 +10,7 @@ private:
 
 public:
     InjectorTuner(Model* model);
-    void CalculateTune();
+    void CalculateTune(bool fOpenLoop);
 };
 
 #endif // INJECTORTUNER_H

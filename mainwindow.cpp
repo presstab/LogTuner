@@ -90,5 +90,6 @@ void MainWindow::on_buttonLoadLog_clicked()
 void MainWindow::on_buttonInjector_clicked()
 {
     InjectorDialog* dialog = new InjectorDialog(this);
+    dialog->SetModel(m_model);
     dialog->show();
 }

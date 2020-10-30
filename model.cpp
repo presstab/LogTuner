@@ -29,3 +29,13 @@ Log Model::GetLog() const
 {
     return m_log;
 }
+
+void Model::SetSmallIpwCompensations(const std::vector<std::pair<double, double> > &vCompensations)
+{
+    m_vSmallIpwCompensations = vCompensations;
+}
+
+std::vector<std::pair<double, double> > Model::GetSmallIpwCompensations() const
+{
+    return m_vSmallIpwCompensations;
+}

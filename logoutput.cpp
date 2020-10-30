@@ -10,10 +10,12 @@ std::map<QString, LogOutput> mapOutputNames
     {"Boost (psi)", LogOutput::Boost},
     {"Calculated Load (g/rev)", LogOutput::CalculatedLoad},
     {"Closed Loop Sw (on/off)", LogOutput::ClosedLoopSwitch},
+    {"Comm Fuel Final (AFR)", LogOutput::CommandedFuel},
     {"Dynamic Adv (°)", LogOutput::DynamicAdvance},
     {"Feedback Knock (°)", LogOutput::FeedbackKnock},
     {"Fine Knock Learn (°)", LogOutput::FineKnockLearning},
     {"Ignition Timing (°)", LogOutput::IgnitionTiming},
+    {"Inj PW Base (ms)", LogOutput::InjectorBasePulseWidth},
     {"Inj Duty Cycle (%)", LogOutput::InjectorDutyCycle},
     {"Inj Latency (ms)", LogOutput::InjectorLatency},
     {"MAF (g/s)", LogOutput::MafGs},
@@ -21,5 +23,6 @@ std::map<QString, LogOutput> mapOutputNames
     {"RPM (RPM)", LogOutput::RPM},
     {"Throttle Pos (%)", LogOutput::ThrottlePos},
     {"Time (sec)", LogOutput::Time},
-    {"Vehicle Speed (mph)", LogOutput::VehicleSpeed}
+    {"Vehicle Speed (mph)", LogOutput::VehicleSpeed},
+    {"Sns Only Rear O2 (raw)", LogOutput::WideBand}
 };

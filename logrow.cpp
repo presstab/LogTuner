@@ -67,6 +67,27 @@ int32_t LogRow::TotalAf3Correction() const
     return AfCorrection3() + AfLearning3();
 }
 
+int32_t LogRow::InjectorBasePulseWidth() const
+{
+    if (m_mapData.count(LogOutput::InjectorBasePulseWidth))
+        return m_mapData.at(LogOutput::InjectorBasePulseWidth).toInt();
+    return 0;
+}
+
+double LogRow::CommandedFuel() const
+{
+    if (m_mapData.count(LogOutput::CommandedFuel))
+        return m_mapData.at(LogOutput::CommandedFuel).toDouble();
+    return 0;
+}
+
+double LogRow::WideBand() const
+{
+    if (m_mapData.count(LogOutput::WideBand))
+        return m_mapData.at(LogOutput::WideBand).toDouble();
+    return 0;
+}
+
 /**
  * @brief LogRow::MafVolts
  * @return MafVolts * 100. If datalog shows 1.04 then MafVolts() will return 104.

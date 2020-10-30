@@ -1,6 +1,7 @@
 #include "injectordialog.h"
 #include "ui_injectordialog.h"
 
+#include "injectortuner.h"
 #include "model.h"
 
 #include <QMessageBox>
@@ -66,10 +67,21 @@ void InjectorDialog::on_buttonCalculate_clicked()
         vLatency.emplace_back(std::make_pair(dVolts, dLatency));
     }
 
+    //Get the entered injector small IPW data
+    std::vector<std::pair<double, double>> vSmallIpwCompensations;
+    for (int column = 0; column < ui->tablewidgetSmallIPW->columnCount(); column++) {
+        //Get the pulse widths
+        double dPulseWidth = ui->tablewidgetSmallIPW->item(0, column)->text().toDouble();
+        double dCompensation = ui->tablewidgetSmallIPW->item(1, column)->text().toDouble();
+        vSmallIpwCompensations.emplace_back(std::make_pair(dPulseWidth, dCompensation));
+    }
+
     //Add the current inputs to the current model
     m_model->SetInjectorScale(nInjectorScalar);
     m_model->SetInjectorLatency(vLatency);
+    m_model->SetSmallIpwCompensations(vSmallIpwCompensations);
 
     //Process suggested tuning changes
-
+    InjectorTuner tuner(m_model);
+    tuner.CalculateTune(/*fOpenLoop*/false);
 }

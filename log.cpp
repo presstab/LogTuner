@@ -4,6 +4,7 @@ QVariant Log::ParseStringData(LogOutput output, const QString &qstrData)
 {
     QVariant data;
     switch (output) {
+        case LogOutput::InjectorBasePulseWidth:
         case LogOutput::Time: {
             //Convert to milliseconds
             data = uint32_t(qstrData.toDouble() * 1000);
@@ -22,6 +23,7 @@ QVariant Log::ParseStringData(LogOutput output, const QString &qstrData)
         case LogOutput::AfCorrection1:
         case LogOutput::AfCorrection3:
         case LogOutput::AfLearning1:
+        case LogOutput::AfLearning3:
         case LogOutput::Boost:
         case LogOutput::DynamicAdvance:
         case LogOutput::FeedbackKnock:
@@ -35,6 +37,12 @@ QVariant Log::ParseStringData(LogOutput output, const QString &qstrData)
         case LogOutput::ClosedLoopSwitch: {
             //Convert to bool from string
             data = bool(qstrData == "on");
+            break;
+        }
+        case LogOutput::CommandedFuel:
+        case LogOutput::WideBand: {
+            //Convert to double from string
+            data = qstrData.toDouble();
             break;
         }
         case LogOutput::RPM:

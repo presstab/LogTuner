@@ -21,6 +21,9 @@ public:
     int32_t AfLearning3() const;
     int32_t TotalAf1Correction() const;
     int32_t TotalAf3Correction() const;
+    int32_t InjectorBasePulseWidth() const;
+    double CommandedFuel() const;
+    double WideBand() const;
     uint32_t MafVolts() const;
 };
 

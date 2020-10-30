@@ -53,6 +53,9 @@
       </spacer>
      </item>
      <item>
+      <widget class="QTableWidget" name="tablewidgetSmallIPW"/>
+     </item>
+     <item>
       <widget class="QPushButton" name="buttonCalculate">
        <property name="text">
         <string>Calculate Changes</string>
