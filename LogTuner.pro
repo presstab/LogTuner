@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     injectordialog.cpp \
     injectortuner.cpp \
+    ipwdialog.cpp \
     log.cpp \
     logoutput.cpp \
     logrow.cpp \
@@ -30,6 +31,7 @@ SOURCES += \
 HEADERS += \
     injectordialog.h \
     injectortuner.h \
+    ipwdialog.h \
     log.h \
     logoutput.h \
     logrow.h \
@@ -40,6 +42,7 @@ HEADERS += \
 
 FORMS += \
     injectordialog.ui \
+    ipwdialog.ui \
     mafdialog.ui \
     mainwindow.ui
 

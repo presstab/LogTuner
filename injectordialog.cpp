@@ -3,7 +3,7 @@
 
 #include "injectortuner.h"
 #include "model.h"
-
+#include "ipwdialog.h"
 #include <QMessageBox>
 
 InjectorDialog::InjectorDialog(QWidget *parent) :
@@ -110,4 +110,11 @@ void InjectorDialog::on_buttonSmallIpw_clicked()
 
         column++;
     }
+}
+
+void InjectorDialog::on_pushButton_clicked()
+{
+    IPWDialog* dialog = new IPWDialog(this);
+    dialog->SetModel(m_model);
+    dialog->show();
 }
